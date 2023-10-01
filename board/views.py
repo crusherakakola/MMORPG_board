@@ -210,7 +210,7 @@ def subscribe_from_category(request, pk):
 @login_required
 
 def unsubscribe_from_category(request, pk):
-    category = Сategory.objects.get(pk=pk)
+    category = Category.objects.get(pk=pk)
     category.subscribers.remove(request.user.id)
     return redirect(request.META.get('HTTP_REFERER'))
 
@@ -234,22 +234,3 @@ class SearchList(ListView):
         context['filter'] = ResponseFilter(self.request.GET, Response.objects.filter(responseUser=user))
         return context
 
-
-
-
-    # @login_required
-# def usial_login_view(request):
-#     username = request.Post['username']
-#     password = request.Post['password']
-#     user = authenticate(self.request, username=username, password=password)
-#     if user is not None:
-#         OneTimeCode.objects.create(code=random.choice('abcde'), user=user)
-#
-# def login_with_code_view(request):
-#     username = request.Post['username']
-#     code = request.Post['code']
-#     if OneTimeCode.objects.filters(code=code, user__name=username).exict():
-#         login(request, user)
-
-
-# Create your views here.
